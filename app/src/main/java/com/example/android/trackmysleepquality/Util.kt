@@ -35,6 +35,9 @@ fun convertDurationToFormatted(startTimeMilli: Long, endTimeMilli: Long, res: Re
     }
 }
 
+fun test() {
+    print("Helli")
+}
 
 /**
  * These functions create a formatted string that can be set in a TextView.

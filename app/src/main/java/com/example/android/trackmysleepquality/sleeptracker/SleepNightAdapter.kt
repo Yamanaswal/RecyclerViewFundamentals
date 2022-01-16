@@ -22,22 +22,24 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        // Without DataBinding
-        // val view = layoutInflater.inflate(R.layout.list_item_sleep_night, parent, false)
+        /**  Without DataBinding */
+        // val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_sleep_night, parent, false)
         val binding = ListItemSleepNightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = data[position]
-        holder.bind(item)
+        holder.binding.sleep = item
+        holder.binding.executePendingBindings()
+//        holder.bind(item)
     }
 
     override fun getItemCount(): Int {
         return data.size;
     }
 
-    class ViewHolder(private val binding: ListItemSleepNightBinding) :
+    class ViewHolder (val binding: ListItemSleepNightBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val sleepLength: TextView = binding.sleepLength
         val quality: TextView = binding.qualityString
@@ -46,20 +48,21 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 }
 
 private fun SleepNightAdapter.ViewHolder.bind(item: SleepNight) {
-    val res = itemView.context.resources
-    sleepLength.text = convertDurationToFormatted(
-        item.startTimeMilli, item.endTimeMilli, res)
-    quality.text = convertNumericQualityToString(
-        item.sleepQuality, res)
-    qualityImage.setImageResource(when (item.sleepQuality) {
-        0 -> R.drawable.ic_sleep_0
-        1 -> R.drawable.ic_sleep_1
-        2 -> R.drawable.ic_sleep_2
-        3 -> R.drawable.ic_sleep_3
-        4 -> R.drawable.ic_sleep_4
-        5 -> R.drawable.ic_sleep_5
-        else -> R.drawable.ic_sleep_active
-    })
+    /**  Without DataBinding */
+//    val res = itemView.context.resources
+//    sleepLength.text = convertDurationToFormatted(
+//        item.startTimeMilli, item.endTimeMilli, res)
+//    quality.text = convertNumericQualityToString(
+//        item.sleepQuality, res)
+//    qualityImage.setImageResource(when (item.sleepQuality) {
+//        0 -> R.drawable.ic_sleep_0
+//        1 -> R.drawable.ic_sleep_1
+//        2 -> R.drawable.ic_sleep_2
+//        3 -> R.drawable.ic_sleep_3
+//        4 -> R.drawable.ic_sleep_4
+//        5 -> R.drawable.ic_sleep_5
+//        else -> R.drawable.ic_sleep_active
+//    })
 }
 
 class SleepNightDiffCallback : DiffUtil.ItemCallback<SleepNight>() {

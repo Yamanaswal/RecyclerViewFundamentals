@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Yaman/AndroidStudioProjects/RecyclerViewFundamentals/app/src/main/res/layout/fragment_sleep_detail.xml" value="0.1" />
         <entry key="..\:/Users/Yaman/AndroidStudioProjects/RecyclerViewFundamentals/app/src/main/res/layout/fragment_sleep_tracker.xml" value="0.20102564102564102" />
         <entry key="..\:/Users/Yaman/AndroidStudioProjects/RecyclerViewFundamentals/app/src/main/res/layout/list_item_sleep_night.xml" value="0.25" />
         <entry key="..\:/Users/Yaman/AndroidStudioProjects/RecyclerViewFundamentals/app/src/main/res/layout/text_item_view.xml" value="0.88125" />
