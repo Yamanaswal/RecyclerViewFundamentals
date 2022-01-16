@@ -27,16 +27,14 @@ class SleepDetailFragment : Fragment() {
             inflater, R.layout.fragment_sleep_detail, container, false)
 
         val application = requireNotNull(this.activity).application
-        val arguments = SleepDetailFragmentArgs.fromBundle(arguments)
+        val arguments = SleepDetailFragmentArgs.fromBundle(requireArguments())
 
         // Create an instance of the ViewModel Factory.
         val dataSource = SleepDatabase.getInstance(application).sleepDatabaseDao
         val viewModelFactory = SleepDetailViewModelFactory(arguments.sleepNightKey, dataSource)
 
         // Get a reference to the ViewModel associated with this fragment.
-        val sleepDetailViewModel =
-            ViewModelProvider(
-                this, viewModelFactory).get(SleepDetailViewModel::class.java)
+        val sleepDetailViewModel = ViewModelProvider(this, viewModelFactory).get(SleepDetailViewModel::class.java)
 
         // To use the View Model with data binding, you have to explicitly
         // give the binding object a reference to it.

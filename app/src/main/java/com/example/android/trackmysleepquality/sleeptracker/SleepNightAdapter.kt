@@ -13,7 +13,8 @@ import com.example.android.trackmysleepquality.convertNumericQualityToString
 import com.example.android.trackmysleepquality.database.SleepNight
 import com.example.android.trackmysleepquality.databinding.ListItemSleepNightBinding
 
-class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
+class SleepNightAdapter(val clickListener: SleepNightListener) :
+    RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
 
     var data = listOf<SleepNight>()
         set(value) {
@@ -24,7 +25,8 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         /**  Without DataBinding */
         // val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_sleep_night, parent, false)
-        val binding = ListItemSleepNightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ListItemSleepNightBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -32,6 +34,7 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
         val item = data[position]
         holder.binding.sleep = item
         holder.binding.executePendingBindings()
+        holder.binding.clickListener = clickListener
 //        holder.bind(item)
     }
 
@@ -39,7 +42,7 @@ class SleepNightAdapter : RecyclerView.Adapter<SleepNightAdapter.ViewHolder>() {
         return data.size;
     }
 
-    class ViewHolder (val binding: ListItemSleepNightBinding) :
+    class ViewHolder(val binding: ListItemSleepNightBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val sleepLength: TextView = binding.sleepLength
         val quality: TextView = binding.qualityString
